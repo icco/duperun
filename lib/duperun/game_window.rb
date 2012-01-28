@@ -36,7 +36,7 @@ class GameWindow < Gosu::Window
 
 
   def draw
-    p [@camera_x, @camera_y, @player.x, @player.y]
+    #p [@camera_x, @camera_y, @player.x, @player.y]
     self.translate(-@camera_x, -@camera_y) do
       @map.draw
       @player.draw
