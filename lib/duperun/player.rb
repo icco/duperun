@@ -21,6 +21,14 @@ class Player
     @vel_y += Gosu::offset_y(@angle, 0.5)
   end
 
+  # TODO: Figure out how to deal with jumping. 
+  def jump
+    if !@jumping
+      @jumping = true
+    end
+  end
+
+
   def move
     @x += @vel_x
     @y += @vel_y
