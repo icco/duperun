@@ -3,7 +3,7 @@
 class Player
   def initialize(window)
     @image = Gosu::Image.new(window, "media/player.png", false)
-    @x = @y = @vel_x = @vel_y = 0.0
+    @x = @y = @vel_x = @vel_y = @angle = 0.0
   end
 
   def warp(x, y)
