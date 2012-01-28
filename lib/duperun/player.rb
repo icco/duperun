@@ -12,21 +12,19 @@ class Player
     @angle = 90.0
   end
 
-  def warp(x, y)
-    @x, @y = x, y
-  end
-
   def accelerate_right
+    puts "--->"
     @vel_x += Gosu::offset_x(@angle, 0.5)
     @vel_y += Gosu::offset_y(@angle, 0.5)
   end
 
   def accelerate_left
+    puts "<---"
     @vel_x -= Gosu::offset_x(@angle, 0.5)
     @vel_y += Gosu::offset_y(@angle, 0.5)
   end
 
-  # TODO: Figure out how to deal with jumping. 
+  # TODO: Figure out how to deal with jumping.
   def jump
     puts "Jump!"
     if @map.solid?(@x, @y + 1) then
@@ -34,12 +32,9 @@ class Player
     end
   end
 
-
   def move
     @x += @vel_x
     @y += @vel_y
-    @x %= CONFIG[:window][:width]
-    @y %= CONFIG[:window][:height]
 
     @vel_x *= 0.95
     @vel_y *= 0.95

@@ -24,7 +24,6 @@ class Map
   end
   
   def draw
-    # Very primitive drawing function:
     # Draws all the tiles, some off-screen, some on-screen.
     @height.times do |y|
       @width.times do |x|

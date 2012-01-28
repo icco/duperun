@@ -9,8 +9,8 @@ Bundler.require
 # CONSTANTS
 CONFIG = {
   :window => {
-    :height => 600, # 10 tiles tall
-    :width => 1000, # 17 tiles wide
+    :height => 600,
+    :width =>  1000,
   },
 }
 
