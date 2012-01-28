@@ -15,8 +15,6 @@ class GameWindow < Gosu::Window
       CONFIG[:window][:height] / 2,
     ]
 
-    @background_image = Gosu::Image.new(self, "media/lines.png", true)
-
     self.caption = "Dupe Run!"
 
     @map = Map.new(self, "media/lvl1.txt")
@@ -36,8 +34,6 @@ class GameWindow < Gosu::Window
 
 
   def draw
-    @background_image.draw(0, 0, 0);
-
     translate(-@camera_x, -@camera_y) do
       @map.draw
       @player.draw
@@ -50,6 +46,5 @@ class GameWindow < Gosu::Window
     close if id == Gosu::KbEscape
 
     @player.jump if id == Gosu::KbUp or id == Gosu::KbSpace
-
   end
 end
