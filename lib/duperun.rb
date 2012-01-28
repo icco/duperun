@@ -16,3 +16,4 @@ CONFIG = {
 
 # Application requires. If you create a new class, put it here brosef!
 require "duperun/game_window"
+require "duperun/player"
