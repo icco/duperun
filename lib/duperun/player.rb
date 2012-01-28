@@ -33,13 +33,12 @@ class Player
   end
 
   def move
-
     @vel_y += 1 # GRAVITY!
 
     if @vel_x > 0 then
-      @x += @vel_x if self.fit? 1,0
+      @x += @vel_x if self.fit? 5, 0
     elsif @vel_x < 0 then
-      @x += @vel_x if self.fit? -1,0
+      @x += @vel_x if self.fit? -5, 0
     end
 
     @vel_x *= 0.95
@@ -47,9 +46,9 @@ class Player
 
     # Vertical movement
     if @vel_y > 0 then
-      @vel_y.to_i.times { if self.fit?(0, 1) then @y += 1 else @vel_y = 0 end }
+      @vel_y.to_i.times { if self.fit? 0, 1 then @y += 1 else @vel_y = 0 end }
     elsif @vel_y < 0 then
-      (-@vel_y).to_i.times { if self.fit?(0, -1) then @y -= 1 else @vel_y = 0 end }
+      (-@vel_y).to_i.times { if self.fit? 0, -1 then @y -= 1 else @vel_y = 0 end }
     end
   end
 
