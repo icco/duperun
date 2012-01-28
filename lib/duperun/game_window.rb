@@ -11,6 +11,7 @@ class GameWindow < Gosu::Window
       CONFIG[:window][:height] / 2,
     ]
 
+    @background_image = Gosu::Image.new(self, "media/lines.png", true)
 
     self.caption = "Dupe Run!"
 
@@ -32,6 +33,7 @@ class GameWindow < Gosu::Window
 
 
   def draw
+    @background_image.draw(0, 0, 0);
     @player.draw
   end
 
