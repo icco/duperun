@@ -13,5 +13,5 @@ rescue Bundler::BundlerError => e
 end
 
 task :run do
-  sh "ruby -Ilib ./bin/exec"
+  sh "ruby -Ilib ./bin/duperun"
 end
