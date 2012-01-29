@@ -12,6 +12,10 @@ rescue Bundler::BundlerError => e
   exit e.status_code
 end
 
+require 'rake/clean'
+CLEAN.include("data.db")
+
+desc "Run the DupeRun game."
 task :run do
   sh "ruby -Ilib ./bin/duperun"
 end
