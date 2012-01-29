@@ -8,20 +8,22 @@ class Player
     @vel_x = @vel_y = 1.0
     @x, @y = x, y
     @map = window.map
-    @image = Gosu::Image.new(window, "media/player.png", false)
-    @angle = 90.0
+
+    @standing, @walk1, @walk2, @jump = *Gosu::Image.load_tiles(window, "media/player2.png", 50, 76, false)
+
+    @angle = 0.0
   end
 
   def accelerate_right
     DupeRun.log "--->"
-    @vel_x += Gosu::offset_x(@angle, 0.5)
-    @vel_y += Gosu::offset_y(@angle, 0.5)
+    @vel_x += Gosu::offset_x(@angle+90, 0.5)
+    @vel_y += Gosu::offset_y(@angle+90, 0.5)
   end
 
   def accelerate_left
     DupeRun.log "<---"
-    @vel_x -= Gosu::offset_x(@angle, 0.5)
-    @vel_y += Gosu::offset_y(@angle, 0.5)
+    @vel_x -= Gosu::offset_x(@angle+90, 0.5)
+    @vel_y += Gosu::offset_y(@angle+90, 0.5)
   end
 
   # TODO: Figure out how to deal with jumping.
@@ -33,6 +35,15 @@ class Player
   end
 
   def move
+    # Select image depending on action
+    if @vel_x == 0
+      @cur_image = @standing
+    elsif @vel_y < 0
+      @cur_image = @jump
+    else
+      @cur_image = (Gosu::milliseconds / 175 % 2 == 0) ? @walk1 : @walk2
+    end
+
     @vel_y += 1 # GRAVITY!
 
     if @vel_x > 0 then
@@ -53,7 +64,7 @@ class Player
   end
 
   def draw
-    @image.draw_rot(@x, @y, 1, @angle)
+    @cur_image.draw_rot(@x, @y, 1, @angle)
   end
 
   def fit? offs_x, offs_y

@@ -28,3 +28,4 @@ Or how Nat decided to make his own game like a newb.
   * http://beoran.github.com/chipmunk/ - Physics Engine
   * http://globalgamejam.org/sites/2012/calpoly - GGJ Site Info and Game listing
   * https://github.com/jlnr/gosu/ - Gosu Source
+  * http://opengameart.org/content/tux-the-linux-mascot - Tux image
