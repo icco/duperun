@@ -19,3 +19,17 @@ desc "Run the DupeRun game."
 task :run do
   sh "ruby -Ilib ./bin/duperun"
 end
+
+require 'jeweler'
+Jeweler::Tasks.new do |gem|
+  gem.name = "duperun"
+  gem.homepage = "http://github.com/icco/duperun"
+  gem.license = "MIT"
+  gem.summary = %Q{A platform game involving penguins}
+  gem.description = %Q{A platform game where penguins jump around.}
+  gem.email = "nat@natwelch.com"
+  gem.authors = ["Nat Welch"]
+  # dependencies defined in Gemfile
+end
+
+Jeweler::RubygemsDotOrgTasks.new
