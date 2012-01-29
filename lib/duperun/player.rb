@@ -94,7 +94,7 @@ class Player < Chingu::GameObject
     return if !@active
     ticks = CONFIG[:db][:ticks]
 
-    every 10, {:name => "rec"} do
+    every 20, {:name => "rec"} do
       DupeRun.log "Record ##{self.which} @x: #{@x} @y: #{@y}"
       ticks.insert(:player => self.which, :x => @x, :y => @y)
     end
