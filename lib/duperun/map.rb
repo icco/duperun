@@ -3,10 +3,8 @@ class Map
   attr_reader :width, :height
 
   def initialize(window, filename)
-
     # Load 60x60 tiles, 5px overlap in all four directions.
-    @tile_width = @tile_height = 60
-    @tileset = Gosu::Image.load_tiles(window, "media/tileset.png", @tile_width, @tile_height, true)
+    @tileset = Gosu::Image.load_tiles(window, "media/tileset.png", 60, 60, true)
 
     lines = File.readlines(filename).map { |line| line.chomp }
     @height = lines.size
@@ -33,7 +31,7 @@ class Map
         if tile
           # Draw the tile with an offset (tile images have some overlap)
           # Scrolling is implemented here just as in the game objects.
-          @tileset[tile].draw(x * 50 - 5, y * 50 - 5, ZOrder::Map)
+          @tileset[tile].draw(x * 50 - 5, y * 50 - 5, 0)
         end
       end
     end
@@ -41,6 +39,9 @@ class Map
 
   # Solid at a given pixel position?
   def solid? x, y
-    y < 0 || @tiles[x / 50][y / 50]
+    return (
+      y < 0 or
+      @tiles[x / 50][y / 50]
+    )
   end
 end

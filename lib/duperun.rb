@@ -21,10 +21,6 @@ class DupeRun
   end
 end
 
-module ZOrder
-  Background, Map, Player, UI = *0..3
-end
-
 
 # Application requires. If you create a new class, put it here brosef!
 require "duperun/game_window"
