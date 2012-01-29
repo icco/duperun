@@ -16,7 +16,7 @@ class Player
     @height = 50
     @width = 50
 
-    @standing, @walk1, @walk2, @jump = *Gosu::Image.load_tiles(window, "media/player2.png", @width, @height, false)
+    @standing, @walk1, @walk2, @jump = *Gosu::Image.load_tiles(window, "media/player.png", @width, @height, false)
 
     @angle = 0.0
   end
