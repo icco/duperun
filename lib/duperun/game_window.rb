@@ -19,7 +19,7 @@ class GameWindow < Gosu::Window
 
     @map = Map.new(self, "media/lvl1.txt")
 
-    @player = Player.new(self, 400, 300)
+    @player = Player.new(self, 400, 200)
 
     @camera_x = @camera_y = 0
   end
@@ -36,7 +36,7 @@ class GameWindow < Gosu::Window
 
 
   def draw
-    #p [@camera_x, @camera_y, @player.x, @player.y]
+    #DupeRun.log [@camera_x, @camera_y, @player.x, @player.y].inspect
     self.translate(-@camera_x, -@camera_y) do
       @map.draw
       @player.draw

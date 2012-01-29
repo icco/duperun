@@ -14,6 +14,14 @@ CONFIG = {
   },
 }
 
+class DupeRun
+  def self.log msg
+    time = Time.now
+    puts "#{time.strftime("%D %T")}: #{msg}"
+  end
+end
+
+
 # Application requires. If you create a new class, put it here brosef!
 require "duperun/game_window"
 require "duperun/player"

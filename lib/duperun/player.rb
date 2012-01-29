@@ -13,20 +13,20 @@ class Player
   end
 
   def accelerate_right
-    puts "--->"
+    DupeRun.log "--->"
     @vel_x += Gosu::offset_x(@angle, 0.5)
     @vel_y += Gosu::offset_y(@angle, 0.5)
   end
 
   def accelerate_left
-    puts "<---"
+    DupeRun.log "<---"
     @vel_x -= Gosu::offset_x(@angle, 0.5)
     @vel_y += Gosu::offset_y(@angle, 0.5)
   end
 
   # TODO: Figure out how to deal with jumping.
   def jump
-    puts "Jump!"
+    DupeRun.log "Jump!"
     if @map.solid?(@x, @y + 1) then
       @vel_y = -20
     end
