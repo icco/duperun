@@ -17,8 +17,9 @@ class Player < Chingu::GameObject
       [:up, :w] => :jump,
     }
 
-    # Load the full animation from tile-file media/droid.bmp
-    @image = Image.autoload "media/player2.png"
+    @width = @height = 50
+    @standing, @walk1, @walk2, @jump = *Image.load_tiles($window, "media/player2.png", @width, @height, false)
+    @image = @standing
 
     @speed = 3
     @jumping = false
@@ -45,6 +46,7 @@ class Player < Chingu::GameObject
     return if @jumping
     @jumping = true
     self.velocity_y = -10
+    @image = @jump
   end
 
   def move(x,y)
@@ -68,6 +70,6 @@ class Player < Chingu::GameObject
       end
     end
 
-    @animation = @animations[:scan] unless moved?
+    @image = (Gosu::milliseconds / 175 % 2 == 0) ? @walk1 : @walk2
   end
 end
