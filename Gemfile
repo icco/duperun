@@ -1,9 +1,9 @@
 source "http://rubygems.org"
 
-gem "chipmunk" # Physics Library
 gem "gosu" # Game Library
 gem "nokogiri" # HTML / XML Parser
 gem "rmagick" # Image Creater / Parser
+gem "sqlite3"
 
 # Dev dependencies.
 group :development do
