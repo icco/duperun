@@ -7,7 +7,7 @@ class GameWindow < Chingu::Window
   def setup
     retrofy
     switch_game_state(Level1)
-  end    
+  end
 
   def draw
     super()

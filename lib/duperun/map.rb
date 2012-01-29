@@ -2,7 +2,7 @@
 class Map < Chingu::GameObject
   trait :bounding_box, :debug => false
   trait :collision_detection
-  
+
   def self.solid
     all.select { |block| block.alpha == 255 }
   end
