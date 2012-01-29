@@ -6,6 +6,9 @@ require "rubygems"
 require "bundler"
 Bundler.require
 
+include Gosu
+include Chingu
+
 # CONSTANTS
 CONFIG = {
   :window => {
@@ -30,3 +33,4 @@ end
 require "duperun/game_window"
 require "duperun/player"
 require "duperun/map"
+require "duperun/level_1"
