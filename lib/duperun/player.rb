@@ -12,6 +12,7 @@ class Player
     @vel_x = @vel_y = 1.0
     @x, @y = x, y
     @map = window.map
+    @window = window
 
     @height = @width = 50
     @standing, @walk1, @walk2, @jump = *Gosu::Image.load_tiles(window, "media/player2.png", @width, @height, false)
@@ -32,6 +33,7 @@ class Player
   def jump
     if @map.solid?(@x, @y + 1)
       @vel_y = -20
+      @window.play "jump"
       DupeRun.log "Jump!"
     else
       DupeRun.log "Can't Jump."

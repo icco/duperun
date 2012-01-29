@@ -3,6 +3,8 @@ class GameWindow < Gosu::Window
   attr_accessor :players
 
   def initialize
+    @@sounds = {}
+
     @players = []
     super(
       CONFIG[:window][:width],
@@ -79,5 +81,14 @@ class GameWindow < Gosu::Window
     DupeRun.log "New Player!: #{@players.inspect}"
 
     return
+  end
+
+  def play what
+    case what
+    when "jump"
+      @@sounds[what] = Gosu::Sample.new(self, "media/jump.wav") if @@sounds[what].nil?
+    end
+
+    @@sounds[what].play if @@sounds[what]
   end
 end
