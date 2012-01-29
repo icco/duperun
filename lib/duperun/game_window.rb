@@ -1,6 +1,6 @@
 class GameWindow < Chingu::Window
   def initialize
-    super(CONFIG[:window][:width], CONFIG[:window][:height])
+    super CONFIG[:window][:width], CONFIG[:window][:height]
     @background = Image["media/space.png"]
   end
 
@@ -10,7 +10,7 @@ class GameWindow < Chingu::Window
   end
 
   def draw
-    super()
+    super
     @background.draw 0, 0, 0
   end
 end
