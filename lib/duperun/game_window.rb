@@ -59,8 +59,8 @@ class GameWindow < Gosu::Window
     # The all important GTFO button.
     close if id == Gosu::KbEscape
 
-    self.player.jump if id == Gosu::KbSpace
-    self.new_player(self.player) if id == Gosu::KbW
+    self.player.jump if id == Gosu::KbSpace or id == Gosu::KbW
+    self.new_player(self.player) if id == Gosu::KbS
     self.next_player if id == Gosu::KbTab
   end
 
