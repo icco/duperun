@@ -45,7 +45,7 @@ class GameWindow < Gosu::Window
 
     #DupeRun.log [@camera_x, @camera_y, player.x, player.y].inspect
     @players.each do |pl|
-      pl.draw if @players.index pl != @current_player
+      pl.draw if !self.current_player? pl
     end
 
     self.translate(-@camera_x, -@camera_y) do
@@ -79,5 +79,9 @@ class GameWindow < Gosu::Window
     DupeRun.log "New Player!: #{@players.inspect}"
 
     return
+  end
+
+  def current_player? pl
+    return @players.index(pl) != @current_player
   end
 end
