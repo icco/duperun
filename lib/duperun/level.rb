@@ -15,6 +15,8 @@ class Level < Chingu::GameState
 
     @player = Player.create(:x => 100, :y => 400)
 
+    @clone_text = Text.create("Clones: #{Player.all.count}", :x => 10, :y => 10, :zorder => 550, :size => 20, :color => Color::WHITE)
+
     self.input = {
       :escape => :exit,
       :tab => :switch,
@@ -42,6 +44,10 @@ class Level < Chingu::GameState
     super
 
     self.viewport.center_around(@player)
+
+    @clone_text.text = "Clones: #{Player.all.count}\nFPS: #{$window.fps}"
+    @clone_text.x = self.viewport.x + 10
+    @clone_text.y = self.viewport.y + 10
   end
 
   def switch
