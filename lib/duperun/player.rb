@@ -3,6 +3,7 @@
 class Player < Chingu::GameObject
   trait :bounding_box, :scale => 0.8, :debug => false
   traits :timer, :collision_detection , :velocity
+  trait :asynchronous
 
   attr_reader :jumping
   attr_accessor :active
@@ -56,7 +57,7 @@ class Player < Chingu::GameObject
   end
 
   def draw
-    self.factor_x = @dir == :left ? -1 : 1
+    self.factor_x = @dir == :left ? -1 : 1 if @active
     super
   end
 

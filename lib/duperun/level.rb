@@ -47,8 +47,19 @@ class Level < Chingu::GameState
   def switch
     i = (@player.which + 1) % Player.all.size
     @player.active = false
+    old_player = @player
     @player = Player.all[i]
     @player.active = true
+
+    # This is the function that will now run asyncly for this character.
+    old_player.async do
+      while true do
+        ticks = CONFIG[:db][:ticks]
+        ticks.filter(:id => old_player.which).order_by(:id).all.each do |row|
+          p row
+        end
+      end
+    end
 
     DupeRun.log "Switched to Player ##{@player.which} of #{Player.all.count}."
   end

@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem "chingu"
+gem "chingu", :git => "https://github.com/ippa/chingu.git", :tag => "v0.9rc5"
 gem "gosu" # Game Library
 gem "nokogiri" # HTML / XML Parser
 gem "rmagick" # Image Creater / Parser
