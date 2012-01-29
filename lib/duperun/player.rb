@@ -13,10 +13,10 @@ class Player
     @x, @y = x, y
     @map = window.map
 
-    @image = {}
-    @image[:height] = 50
-    @image[:width] = 50
-    @standing, @walk1, @walk2, @jump = *Gosu::Image.load_tiles(window, "media/player2.png", @image[:width], @image[:height], false)
+    @height = 50
+    @width = 50
+
+    @standing, @walk1, @walk2, @jump = *Gosu::Image.load_tiles(window, "media/player2.png", @width, @height, false)
 
     @angle = 0.0
   end
@@ -33,7 +33,6 @@ class Player
     @vel_y += Gosu::offset_y(@angle+90, 0.5)
   end
 
-  # TODO: Figure out how to deal with jumping.
   def jump
     DupeRun.log "Jump!"
     if @map.solid?(@x, @y + 1) then
@@ -55,9 +54,9 @@ class Player
     @vel_y += 1 # GRAVITY!
 
     if @vel_x > 0 then
-      @x += @vel_x if self.fit? 5, 0
+      @x += @vel_x if self.fit? 1, 0
     elsif @vel_x < 0 then
-      @x += @vel_x if self.fit? -5, 0
+      @x += @vel_x if self.fit? -1, 0
     end
 
     @vel_x *= 0.95
@@ -75,11 +74,13 @@ class Player
     @cur_image.draw_rot(@x, @y, 1, @angle, ZOrder::Player)
   end
 
+
+
   def fit? offs_x, offs_y
     # Check at the center/top and center/bottom for map collisions
     return (
       not @map.solid?(@x + offs_x, @y + offs_y) and
-      not @map.solid?(@x + offs_x - @image[:height], @y + offs_y - @image[:height])
+      not @map.solid?(@x + offs_x, @y + offs_y - @height)
     )
   end
 end
