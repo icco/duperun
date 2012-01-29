@@ -1,16 +1,14 @@
 # A player instance
 
 class Player
-  attr_reader :x, :y
+  attr_reader :shape
 
   def inspect
     return "#<Player @y=#{@y}, @x=#{@x}, @vel_y=#{@vel_x}, @vel_x=#{@vel_x}>"
   end
 
-  def initialize(window, x, y)
-    @x = @y = 0.0
+  def initialize(window, x, y, shape)
     @vel_x = @vel_y = 1.0
-    @x, @y = x, y
     @map = window.map
     @window = window
 
@@ -18,16 +16,30 @@ class Player
     @standing, @walk1, @walk2, @jump = *Gosu::Image.load_tiles(window, "media/player2.png", @width, @height, false)
 
     @angle = 0.0
+
+    @shape = shape
+    @shape.body.p = CP::Vec2.new(0.0, 0.0) # position
+    @shape.body.v = CP::Vec2.new(0.0, 0.0) # velocity
+    @shape.body.a = (3*Math::PI/2.0) # angle in radians; faces towards top of screen
+    @shape.body.x, @shape.body.y = x, y
+  end
+
+  def x
+    @shape.body.x
+  end
+
+  def y
+    @shape.body.y
   end
 
   def accelerate_right
     DupeRun.log "--->"
-    @vel_x += Gosu::offset_x(@angle+90, 0.5)
+    @shape.body.apply_force((@shape.body.a.radians_to_vec2 * (3000.0/SUBSTEPS)), CP::Vec2.new(0.0, 0.0))
   end
 
   def accelerate_left
     DupeRun.log "<---"
-    @vel_x -= Gosu::offset_x(@angle+90, 0.5)
+    @shape.body.apply_force(-(@shape.body.a.radians_to_vec2 * (3000.0/SUBSTEPS)), CP::Vec2.new(0.0, 0.0))
   end
 
   def jump

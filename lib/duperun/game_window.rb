@@ -17,6 +17,9 @@ class GameWindow < Gosu::Window
       CONFIG[:window][:height] / 2,
     ]
 
+    @space = CP::Space.new
+    @space.damping = 0.8    
+
     self.caption = "Dupe Run!"
 
     @bg = Gosu::Image.new(self, "media/space.png", true)
