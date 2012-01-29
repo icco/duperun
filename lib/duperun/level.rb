@@ -1,15 +1,12 @@
 # Base Level class
 
-class Level1 < Chingu::GameState
+class Level < Chingu::GameState
   traits :viewport, :timer
 
   def initialize(options = {})
     super options
 
-    self.input = { 
-      :escape => :exit,
-      :tab => switch,
-    }
+    $window.caption = "Dupe Run! (#{self.class})"
 
     self.viewport.game_area = [0, 0, 3500, 2000]
 
@@ -18,7 +15,10 @@ class Level1 < Chingu::GameState
 
     @player = Player.create(:x => 100, :y => 400)
 
-    $window.caption = "Dupe Run! (#{self.class})"
+    self.input = {
+      :escape => :exit,
+      :tab => :switch,
+    }
 
     # An attempt at map building.
     lines = File.readlines(@level_map).map { |line| line.chomp }
