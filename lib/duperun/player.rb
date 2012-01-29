@@ -46,11 +46,18 @@ class Player < Chingu::GameObject
   end
 
   def holding_left
+    @dir = :left
     move(-@speed, 0) if @active
   end
 
   def holding_right
+    @dir = :right
     move(@speed, 0) if @active
+  end
+
+  def draw
+    self.factor_x = @dir == :left ? -1 : 1
+    super
   end
 
   def jump
