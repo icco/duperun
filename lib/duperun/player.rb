@@ -22,17 +22,15 @@ class Player
   def accelerate_right
     DupeRun.log "--->"
     @vel_x += Gosu::offset_x(@angle+90, 0.5)
-    @vel_y += Gosu::offset_y(@angle+90, 0.5)
   end
 
   def accelerate_left
     DupeRun.log "<---"
     @vel_x -= Gosu::offset_x(@angle+90, 0.5)
-    @vel_y += Gosu::offset_y(@angle+90, 0.5)
   end
 
   def jump
-    if self.fit? @x, @y
+    if @map.solid?(@x, @y + 1)
       @vel_y = -20
       DupeRun.log "Jump!"
     else
@@ -53,14 +51,10 @@ class Player
 
     @vel_y += 1 # GRAVITY!
 
-    if @vel_x > 0 then
-      @vel_x.to_i.times { if self.fit? 1, 0 then @x += 1 else @vel_x = 0 end }
-    elsif @vel_x < 0 then
-      @vel_x.to_i.times { if self.fit? -1, 0 then @x -= 1 else @vel_x = 0 end }
-    end
-
     @vel_x *= 0.95
     @vel_y *= 0.95
+
+    @x += @vel_x if self.fit? @vel_x, 0
 
     # Vertical movement
     if @vel_y > 0 then
