@@ -15,7 +15,15 @@ CONFIG = {
     :height => 600,
     :width =>  1000,
   },
+  :db => Sequel.connect("sqlite://data.db")
 }
+
+CONFIG[:db].create_table! :ticks do
+  primary_key :id
+  Integer :player
+  Float :x
+  Float :y
+end
 
 class DupeRun
   def self.log msg

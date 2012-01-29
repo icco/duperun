@@ -2,7 +2,7 @@
 
 class Player < Chingu::GameObject
   trait :bounding_box, :scale => 0.8, :debug => false
-  traits :timer, :collision_detection , :timer, :velocity
+  traits :timer, :collision_detection , :velocity
 
   attr_reader :jumping
   attr_accessor :active
@@ -17,6 +17,8 @@ class Player < Chingu::GameObject
       [:holding_right, :holding_d] => :holding_right,
       [:space, :w] => :jump,
       [:s] => :clone,
+      [:k] => :die,
+      [:q] => :record,
     }
 
     @width = @height = 50
@@ -75,6 +77,16 @@ class Player < Chingu::GameObject
     end
 
     self.y += y
+  end
+
+  # We'll use the timer trait and basically constantly record until all is
+  # good. We can then use the Async trait to replay what we saved.
+  def record
+    return if !@active
+
+    every 10, {:name => "rec"} do
+      DupeRun.log "Record ##{self.which} @x: #{@x} @y: #{@y}"
+    end
   end
 
   def update
