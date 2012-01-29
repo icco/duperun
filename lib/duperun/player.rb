@@ -8,7 +8,8 @@ class Player < Chingu::GameObject
   attr_accessor :active
 
   def inspect
-    return "#<Player @y=#{@y}, @x=#{@x}, @vel_y=#{@vel_x}, @vel_x=#{@vel_x}>"
+    num = Player.all.index self
+    return "#<Player ##{num} @y=#{@y}, @x=#{@x}, @active=#{@active}>"
   end
 
   def setup

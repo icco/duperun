@@ -41,4 +41,18 @@ class Level1 < Chingu::GameState
   def draw
     super
   end
+
+  def button_down id
+    super
+    switch if id == KbTab
+  end
+
+  def switch
+    i = Player.all.index @player
+    i = (i + 1) % Player.all.size
+    @player.active = false
+    @player = Player.all[i]
+    @player.active = true
+    p Player.all
+  end
 end
