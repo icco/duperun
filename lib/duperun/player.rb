@@ -74,7 +74,7 @@ class Player
     # Check at the center/top and center/bottom for map collisions
     return (
       not @map.solid?(@x + offs_x, @y + offs_y) and
-      not @map.solid?(@x + offs_x - (@width/2), @y + offs_y - (@height/2))
+      not @map.solid?(@x + offs_x - 45, @y + offs_y - 45)
     )
   end
 end
