@@ -8,8 +8,7 @@ class Player < Chingu::GameObject
   attr_accessor :active
 
   def inspect
-    num = Player.all.index self
-    return "#<Player ##{num} @y=#{@y}, @x=#{@x}, @active=#{@active}>"
+    return "#<Player ##{self.which} @y=#{@y}, @x=#{@x}, @active=#{@active}>"
   end
 
   def setup
@@ -37,6 +36,10 @@ class Player < Chingu::GameObject
 
     update
     cache_bounding_box
+  end
+
+  def which
+    return Player.all.index self
   end
 
   def holding_left

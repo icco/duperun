@@ -48,11 +48,11 @@ class Level1 < Chingu::GameState
   end
 
   def switch
-    i = Player.all.index @player
-    i = (i + 1) % Player.all.size
+    i = (@player.which + 1) % Player.all.size
     @player.active = false
     @player = Player.all[i]
     @player.active = true
-    p Player.all
+
+    DupeRun.log "Switched to Player ##{@player.which} of #{Player.all.count}."
   end
 end
