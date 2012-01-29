@@ -1,7 +1,7 @@
 # A player instance
 
 class Player < Chingu::GameObject
-  trait :bounding_box, :scale => 0.80
+  trait :bounding_box, :scale => 0.8, :debug => false
   traits :timer, :collision_detection , :timer, :velocity
 
   attr_reader :jumping
@@ -14,20 +14,20 @@ class Player < Chingu::GameObject
     self.input = {
       [:holding_left, :holding_a] => :holding_left,
       [:holding_right, :holding_d] => :holding_right,
-      [:up, :w] => :jump,
+      [:space, :w] => :jump,
     }
 
     @width = @height = 50
     @standing, @walk1, @walk2, @jump = *Image.load_tiles($window, "media/player2.png", @width, @height, false)
     @image = @standing
 
-    @speed = 3
+    @speed = 5
     @jumping = false
 
     self.zorder = 300
-    self.factor = 3
-    self.acceleration_y = 0.5
-    self.max_velocity = 10
+    self.factor = 0.8
+    self.acceleration_y = 0.2
+    self.max_velocity = 20
     self.rotation_center = :bottom_center
 
     update
