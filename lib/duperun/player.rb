@@ -9,7 +9,10 @@ class Player
     @x, @y = x, y
     @map = window.map
 
-    @standing, @walk1, @walk2, @jump = *Gosu::Image.load_tiles(window, "media/player2.png", 50, 76, false)
+    @image = {}
+    @image[:height] = 50
+    @image[:width] = 50
+    @standing, @walk1, @walk2, @jump = *Gosu::Image.load_tiles(window, "media/player2.png", @image[:width], @image[:height], false)
 
     @angle = 0.0
   end
@@ -35,6 +38,7 @@ class Player
   end
 
   def move
+
     # Select image depending on action
     if @vel_x == 0
       @cur_image = @standing
@@ -71,7 +75,7 @@ class Player
     # Check at the center/top and center/bottom for map collisions
     return (
       not @map.solid?(@x + offs_x, @y + offs_y) and
-      not @map.solid?(@x + offs_x - 45, @y + offs_y - 45)
+      not @map.solid?(@x + offs_x - @image[:height], @y + offs_y - @image[:height])
     )
   end
 end
