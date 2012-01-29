@@ -87,4 +87,21 @@ class Player < Chingu::GameObject
 
     @image = (Gosu::milliseconds / 175 % 2 == 0) ? @walk1 : @walk2
   end
+
+  def die
+    if @active
+      self.collidable = false
+      @color = Color::RED.dup
+      between(1,600) do
+        self.velocity_y = 0
+        self.scale += 0.2
+        self.alpha -= 5
+      end.then do
+        # TODO: Sound["media/boom.wav"].play
+        self.destroy
+        Player.all.delete self
+      end
+
+    end
+  end
 end
