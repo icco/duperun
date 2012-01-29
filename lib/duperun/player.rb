@@ -3,6 +3,10 @@
 class Player
   attr_reader :x, :y
 
+  def inspect
+    return "#<Player @y=#{@y}, @x=#{@x}, @vel_y=#{@vel_x}, @vel_x=#{@vel_x}>"
+  end
+
   def initialize(window, x, y)
     @x = @y = 0.0
     @vel_x = @vel_y = 1.0

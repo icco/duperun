@@ -26,13 +26,15 @@ class GameWindow < Gosu::Window
   end
 
   def update
-    player.accelerate_left   if button_down? Gosu::KbA or button_down? Gosu::GpLeft
-    player.accelerate_right  if button_down? Gosu::KbD or button_down? Gosu::GpRight
+    self.player.accelerate_left   if button_down? Gosu::KbA or button_down? Gosu::GpLeft
+    self.player.accelerate_right  if button_down? Gosu::KbD or button_down? Gosu::GpRight
 
-    @camera_x = [ [player.x - @@center[0], 0].max,  @map.width * 50 - CONFIG[:window][:width]  ].min
-    @camera_y = [ [player.y - @@center[1], 0].max, @map.height * 50 - CONFIG[:window][:height] ].min
+    @camera_x = [ [self.player.x - @@center[0], 0].max,  @map.width * 50 - CONFIG[:window][:width]  ].min
+    @camera_y = [ [self.player.y - @@center[1], 0].max, @map.height * 50 - CONFIG[:window][:height] ].min
 
-    player.move
+    @players.each do |pl|
+      pl.move
+    end
   end
 
 
@@ -44,7 +46,7 @@ class GameWindow < Gosu::Window
 
     self.translate(-@camera_x, -@camera_y) do
       @map.draw
-      player.draw
+      self.player.draw
     end
   end
 
@@ -64,11 +66,13 @@ class GameWindow < Gosu::Window
 
   def next_player
     @current_player = (@current_player + 1) % @players.length
+    DupeRun.log "Now: #{@current_player}"
   end
 
   def new_player pl
     @players.push(Player.new(self, pl.x, pl.y))
     @current_player = @players.length - 1
+    DupeRun.log "New Player!: #{@players.inspect}"
 
     return
   end
