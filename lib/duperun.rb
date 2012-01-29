@@ -31,5 +31,6 @@ end
 # Application requires. If you create a new class, put it here brosef!
 require "duperun/game_window"
 require "duperun/player"
-require "duperun/map"
+require "duperun/block"
+require "duperun/grass_block"
 require "duperun/level_1"

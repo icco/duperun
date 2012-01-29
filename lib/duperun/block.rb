@@ -1,5 +1,5 @@
 # Map class holds and draws tiles
-class Map < Chingu::GameObject
+class Block < Chingu::GameObject
   trait :bounding_box, :debug => false
   trait :collision_detection
 
@@ -12,7 +12,9 @@ class Map < Chingu::GameObject
   end
 
   def setup
-    @image = Image["tileset.png"]
+    @width = @height = 60
+    @grass, @dirt = *Image.load_tiles($window, "media/tileset.png", @width, @height, false)
+    @image = @dirt
     @color = Color.new(0xff808080)
     cache_bounding_box
   end

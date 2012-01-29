@@ -51,7 +51,7 @@ class Player < Chingu::GameObject
 
   def move(x,y)
     self.x += x
-    self.each_collision(Map) do |me, stone_wall|
+    self.each_collision(Block, GrassBlock) do |me, stone_wall|
       self.x = previous_x
       break
     end
@@ -60,7 +60,7 @@ class Player < Chingu::GameObject
   end
 
   def update
-    self.each_collision(Map) do |me, stone_wall|
+    self.each_collision(Block, GrassBlock) do |me, stone_wall|
       if self.velocity_y < 0  # Hitting the ceiling
         me.y = stone_wall.bb.bottom + me.image.height * self.factor_y
         self.velocity_y = 0

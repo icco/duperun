@@ -22,11 +22,11 @@ class Level1 < Chingu::GameState
       Array.new(@height) do |y|
         case lines[y][x, 1]
         when '"'
-          0
+          GrassBlock.create({:x => x, :y => y})
         when '#'
-          1
+          Block.create({:x => x, :y => y})
         else
-          nil
+          nil # Do Nothing!
         end
       end
     end
@@ -40,16 +40,5 @@ class Level1 < Chingu::GameState
 
   def draw
     super
-
-    @height.times do |y|
-      @width.times do |x|
-        tile = @tiles[x][y]
-        if tile
-          # Draw the tile with an offset (tile images have some overlap)
-          # Scrolling is implemented here just as in the game objects.
-          @tileset[tile].draw(x * 50 - 5, y * 50 - 5, ZOrder::Map)
-        end
-      end
-    end
   end
 end
