@@ -51,15 +51,16 @@ class Level < Chingu::GameState
     @player = Player.all[i]
     @player.active = true
 
+    # TODO: Figure out why takes over the machine. 
     # This is the function that will now run asyncly for this character.
-    old_player.async do
-      while true do
-        ticks = CONFIG[:db][:ticks]
-        ticks.filter(:id => old_player.which).order_by(:id).all.each do |row|
-          p row
-        end
-      end
-    end
+    #old_player.async do
+    #  while true do
+    #    ticks = CONFIG[:db][:ticks]
+    #    ticks.filter(:id => old_player.which).order_by(:id).all.each do |row|
+    #      p row
+    #    end
+    #  end
+    #end
 
     DupeRun.log "Switched to Player ##{@player.which} of #{Player.all.count}."
   end
