@@ -22,9 +22,9 @@ class Level1 < Chingu::GameState
       Array.new(@height) do |y|
         case lines[y][x, 1]
         when '"'
-          GrassBlock.create({:x => x, :y => y})
+          GrassBlock.create({:x => x*50, :y => y*50})
         when '#'
-          Block.create({:x => x, :y => y})
+          Block.create({:x => x*50, :y => y*50})
         else
           nil # Do Nothing!
         end
