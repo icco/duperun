@@ -3,8 +3,10 @@ class Map
   attr_reader :width, :height
 
   def initialize(window, filename)
+
     # Load 60x60 tiles, 5px overlap in all four directions.
-    @tileset = Gosu::Image.load_tiles(window, "media/tileset.png", 60, 60, true)
+    @tile_width = @tile_height = 60
+    @tileset = Gosu::Image.load_tiles(window, "media/tileset.png", @tile_width, @tile_height, true)
 
     lines = File.readlines(filename).map { |line| line.chomp }
     @height = lines.size
@@ -39,10 +41,6 @@ class Map
 
   # Solid at a given pixel position?
   def solid? x, y
-    answer = (y < 0 or (!@tiles[x/50].nil? and !@tiles[x / 50][y / 50].nil?))
-
-    DupeRun.log "Solid? #{x}, #{y} : #{answer}"
-
-    return answer
+    y < 0 || @tiles[x / 50][y / 50]
   end
 end
