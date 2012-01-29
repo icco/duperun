@@ -35,19 +35,16 @@ class Player < Chingu::GameObject
 
   def holding_left
     move(-@speed, 0)
-    @animation = @animations[:left]
   end
 
   def holding_right
     move(@speed, 0)
-    @animation = @animations[:right]
   end
 
   def jump
     return if @jumping
     @jumping = true
     self.velocity_y = -10
-    @animation = @animations[:up]
   end
 
   def move(x,y)
