@@ -1,10 +1,16 @@
+# Base Level class
+
 class Level1 < Chingu::GameState
   traits :viewport, :timer
 
   def initialize(options = {})
-    super
+    super options
 
-    self.input = { :escape => :exit }
+    self.input = { 
+      :escape => :exit
+      :tab => switch
+    }
+
     self.viewport.game_area = [0, 0, 3500, 2000]
 
     @tile_width = @tile_height = 60
@@ -12,10 +18,10 @@ class Level1 < Chingu::GameState
 
     @player = Player.create(:x => 100, :y => 400)
 
-    $window.caption = "Dupe Run! (Level One)"
+    $window.caption = "Dupe Run! (#{self.class})"
 
     # An attempt at map building.
-    lines = File.readlines("media/lvl1.txt").map { |line| line.chomp }
+    lines = File.readlines(@level_map).map { |line| line.chomp }
     @height = lines.size
     @width = lines[0].size
     @tiles = Array.new(@width) do |x|
@@ -36,15 +42,6 @@ class Level1 < Chingu::GameState
     super
 
     self.viewport.center_around(@player)
-  end
-
-  def draw
-    super
-  end
-
-  def button_down id
-    super
-    switch if id == KbTab
   end
 
   def switch
