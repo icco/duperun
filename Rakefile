@@ -14,6 +14,8 @@ end
 
 require 'rake/clean'
 CLEAN.include("data.db")
+CLEAN.include(".DS_Store")
+CLEAN.include(".rake_t_cache")
 
 desc "Run the DupeRun game."
 task :run do
