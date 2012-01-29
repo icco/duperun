@@ -50,6 +50,7 @@ class Player < Chingu::GameObject
   def jump
     if @active
       return if @jumping
+      Sound["media/jump.wav"].play
       @jumping = true
       self.velocity_y = -10
       @image = @jump
