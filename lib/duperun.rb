@@ -16,8 +16,7 @@ CONFIG = {
 
 class DupeRun
   def self.log msg
-    time = Time.now
-    puts "#{time.strftime("%D %T")}: #{msg}"
+    puts "#{Time.now.strftime("%D %T")}: #{msg}"
   end
 end
 
