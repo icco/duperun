@@ -1,6 +1,6 @@
 # A player instance
 
-class Player
+class Player < Chingu::GameObject
   attr_reader :x, :y
 
   def inspect

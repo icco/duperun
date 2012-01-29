@@ -25,9 +25,9 @@ Or how Nat decided to make his own game like a newb.
   * http://wompt.com/chat/ggj2012calpoly - Chat room
   * http://www.libgosu.org/ - Gosu main site
   * http://www.libgosu.org/rdoc/ - Ruby Documentation
-  * http://beoran.github.com/chipmunk/ - Physics Engine
   * http://globalgamejam.org/sites/2012/calpoly - GGJ Site Info and Game listing
   * https://github.com/jlnr/gosu/ - Gosu Source
   * http://opengameart.org/content/tux-the-linux-mascot - Tux image
   * http://www.superflashbros.net/as3sfxr/ - music gen
   * http://www.bfxr.net/ - music gen 2
+  * https://github.com/ippa/chingu - Chungu

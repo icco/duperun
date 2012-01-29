@@ -1,4 +1,4 @@
-class GameWindow < Gosu::Window
+class GameWindow < Chingu::Window
   attr_reader :map
   attr_accessor :players
 
