@@ -19,7 +19,7 @@ class GameWindow < Gosu::Window
 
     @bg = Gosu::Image.new(self, "media/space.png", true)
 
-    @map = Map.new(self, "media/lvl1.txt")
+    @map = Map.new(self, "media/lvl2.txt")
 
     @players = [Player.new(self, 400, 200)]
     @current_player = 0
