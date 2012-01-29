@@ -1,5 +1,6 @@
 source "http://rubygems.org"
 
+gem "chingu"
 gem "gosu" # Game Library
 gem "nokogiri" # HTML / XML Parser
 gem "rmagick" # Image Creater / Parser
