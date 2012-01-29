@@ -29,3 +29,5 @@ Or how Nat decided to make his own game like a newb.
   * http://globalgamejam.org/sites/2012/calpoly - GGJ Site Info and Game listing
   * https://github.com/jlnr/gosu/ - Gosu Source
   * http://opengameart.org/content/tux-the-linux-mascot - Tux image
+  * http://www.superflashbros.net/as3sfxr/ - music gen
+  * http://www.bfxr.net/ - music gen 2
