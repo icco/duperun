@@ -31,3 +31,6 @@ Or how Nat decided to make his own game like a newb.
   * http://www.superflashbros.net/as3sfxr/ - music gen
   * http://www.bfxr.net/ - music gen 2
   * https://github.com/ippa/chingu - Chungu
+  * http://sequel.rubyforge.org/ - Database stuff
+  * http://rubydoc.info/github/ippa/chingu/master/Chingu/Traits/Timer - Chingu's Timer Trait
+  * http://rubydoc.info/github/ippa/chingu/master/Chingu/Traits/Asynchronous - Chingu's Async Trait

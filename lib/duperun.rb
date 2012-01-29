@@ -18,6 +18,7 @@ CONFIG = {
   :db => Sequel.connect("sqlite://data.db")
 }
 
+# This resets the DB every time the app runs.
 CONFIG[:db].create_table! :ticks do
   primary_key :id
   Integer :player

@@ -19,6 +19,7 @@ class Player < Chingu::GameObject
       [:s] => :clone,
       [:k] => :die,
       [:q] => :record,
+      [:e] => :stop_record,
     }
 
     @width = @height = 50
@@ -83,10 +84,17 @@ class Player < Chingu::GameObject
   # good. We can then use the Async trait to replay what we saved.
   def record
     return if !@active
+    ticks = CONFIG[:db][:ticks]
 
     every 10, {:name => "rec"} do
       DupeRun.log "Record ##{self.which} @x: #{@x} @y: #{@y}"
+      ticks.insert(:player => self.which, :x => @x, :y => @y)
     end
+  end
+
+  def stop_record
+    stop_timer("rec")
+    DupeRun.log "Recorded #{CONFIG[:db][:ticks].filter(:player => self.which).count} ticks."
   end
 
   def update

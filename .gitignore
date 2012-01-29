@@ -1,2 +1,3 @@
 .DS_Store
 .rake_t_cache
+*.db
