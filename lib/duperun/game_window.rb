@@ -19,7 +19,7 @@ class GameWindow < Gosu::Window
 
     @map = Map.new(self, "media/lvl1.txt")
 
-    @player = Player.new(self, 400, 100)
+    @player = Player.new(self, 400, 300)
 
     @camera_x = @camera_y = 0
   end

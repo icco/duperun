@@ -58,7 +58,9 @@ class Player
 
   def fit? offs_x, offs_y
     # Check at the center/top and center/bottom for map collisions
-    not @map.solid?(@x + offs_x, @y + offs_y) and
-      not @map.solid?(@x + offs_x, @y + offs_y - 45)
+    return (
+      not @map.solid?(@x + offs_x, @y + offs_y) and
+      not @map.solid?(@x + offs_x - 45, @y + offs_y - 45)
+    )
   end
 end

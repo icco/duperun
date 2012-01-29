@@ -1,7 +1,7 @@
 # Map class holds and draws tiles
 class Map
   attr_reader :width, :height
-  
+
   def initialize(window, filename)
     # Load 60x60 tiles, 5px overlap in all four directions.
     @tileset = Gosu::Image.load_tiles(window, "media/tileset.png", 60, 60, true)
@@ -22,7 +22,7 @@ class Map
       end
     end
   end
-  
+
   def draw
     # Draws all the tiles, some off-screen, some on-screen.
     @height.times do |y|
@@ -36,9 +36,12 @@ class Map
       end
     end
   end
-  
+
   # Solid at a given pixel position?
-  def solid?(x, y)
-    y < 0 || @tiles[x / 50][y / 50]
+  def solid? x, y
+    return (
+      y < 0 or
+      @tiles[x / 50][y / 50]
+    )
   end
 end
