@@ -34,9 +34,11 @@ class Player
   end
 
   def jump
-    DupeRun.log "Jump!"
-    if @map.solid?(@x, @y + 1) then
+    if self.fit? @x, @y
       @vel_y = -20
+      DupeRun.log "Jump!"
+    else
+      DupeRun.log "Can't Jump."
     end
   end
 
@@ -54,9 +56,9 @@ class Player
     @vel_y += 1 # GRAVITY!
 
     if @vel_x > 0 then
-      @x += @vel_x if self.fit? 1, 0
+      @vel_x.to_i.times { if self.fit? 1, 0 then @x += 1 else @vel_x = 0 end }
     elsif @vel_x < 0 then
-      @x += @vel_x if self.fit? -1, 0
+      @vel_x.to_i.times { if self.fit? -1, 0 then @x -= 1 else @vel_x = 0 end }
     end
 
     @vel_x *= 0.95
@@ -74,13 +76,11 @@ class Player
     @cur_image.draw_rot(@x, @y, 1, @angle, ZOrder::Player)
   end
 
-
-
   def fit? offs_x, offs_y
     # Check at the center/top and center/bottom for map collisions
     return (
       not @map.solid?(@x + offs_x, @y + offs_y) and
-      not @map.solid?(@x + offs_x, @y + offs_y - @height)
+      not @map.solid?(@x + offs_x - (@width/2), @y + offs_y - (@height/2))
     )
   end
 end

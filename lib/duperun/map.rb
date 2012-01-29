@@ -39,9 +39,10 @@ class Map
 
   # Solid at a given pixel position?
   def solid? x, y
-    return (
-      y < 0 or
-      @tiles[x / 50][y / 50]
-    )
+    answer = (y < 0 or (!@tiles[x/50].nil? and !@tiles[x / 50][y / 50].nil?))
+
+    DupeRun.log "Solid? #{x}, #{y} : #{answer}"
+
+    return answer
   end
 end
