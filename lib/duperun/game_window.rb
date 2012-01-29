@@ -61,8 +61,8 @@ class GameWindow < Gosu::Window
     # The all important GTFO button.
     close if id == Gosu::KbEscape
 
-    self.player.jump if id == Gosu::KbSpace
-    self.new_player(self.player) if id == Gosu::KbW
+    self.player.jump if id == Gosu::KbSpace or id == Gosu::KbW
+    self.new_player(self.player) if id == Gosu::KbD
     self.next_player if id == Gosu::KbTab
   end
 
@@ -78,6 +78,7 @@ class GameWindow < Gosu::Window
   def new_player pl
     @players.push(Player.new(self, pl.x, pl.y))
     @current_player = @players.length - 1
+
     DupeRun.log "New Player!: #{@players.inspect}"
 
     return
