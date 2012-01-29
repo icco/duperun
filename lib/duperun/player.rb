@@ -72,7 +72,7 @@ class Player
   end
 
   def draw
-    @cur_image.draw_rot(@x, @y, 1, @angle)
+    @cur_image.draw_rot(@x, @y, 1, @angle, ZOrder::Player)
   end
 
   def fit? offs_x, offs_y

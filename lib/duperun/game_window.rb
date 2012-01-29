@@ -17,6 +17,8 @@ class GameWindow < Gosu::Window
 
     self.caption = "Dupe Run!"
 
+    @bg = Gosu::Image.new(self, "media/space.png", true)
+
     @map = Map.new(self, "media/lvl1.txt")
 
     @players = [Player.new(self, 400, 200)]
@@ -39,6 +41,8 @@ class GameWindow < Gosu::Window
 
 
   def draw
+    @bg.draw 0, 0, ZOrder::Background
+
     #DupeRun.log [@camera_x, @camera_y, player.x, player.y].inspect
     @players.each do |pl|
       pl.draw if @players.index pl != @current_player

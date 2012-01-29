@@ -31,7 +31,7 @@ class Map
         if tile
           # Draw the tile with an offset (tile images have some overlap)
           # Scrolling is implemented here just as in the game objects.
-          @tileset[tile].draw(x * 50 - 5, y * 50 - 5, 0)
+          @tileset[tile].draw(x * 50 - 5, y * 50 - 5, ZOrder::Map)
         end
       end
     end
