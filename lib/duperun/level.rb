@@ -7,8 +7,8 @@ class Level1 < Chingu::GameState
     super options
 
     self.input = { 
-      :escape => :exit
-      :tab => switch
+      :escape => :exit,
+      :tab => switch,
     }
 
     self.viewport.game_area = [0, 0, 3500, 2000]
