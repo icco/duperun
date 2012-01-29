@@ -5,6 +5,7 @@ class Player < Chingu::GameObject
   traits :timer, :collision_detection , :timer, :velocity
 
   attr_reader :jumping
+  attr_accessor :active
 
   def inspect
     return "#<Player @y=#{@y}, @x=#{@x}, @vel_y=#{@vel_x}, @vel_x=#{@vel_x}>"
@@ -15,6 +16,7 @@ class Player < Chingu::GameObject
       [:holding_left, :holding_a] => :holding_left,
       [:holding_right, :holding_d] => :holding_right,
       [:space, :w] => :jump,
+      [:s] => :clone,
     }
 
     @width = @height = 50
@@ -23,6 +25,8 @@ class Player < Chingu::GameObject
 
     @speed = 5
     @jumping = false
+
+    @active = true
 
     self.zorder = 300
     self.factor = 0.8
@@ -35,18 +39,27 @@ class Player < Chingu::GameObject
   end
 
   def holding_left
-    move(-@speed, 0)
+    move(-@speed, 0) if @active
   end
 
   def holding_right
-    move(@speed, 0)
+    move(@speed, 0) if @active
   end
 
   def jump
-    return if @jumping
-    @jumping = true
-    self.velocity_y = -10
-    @image = @jump
+    if @active
+      return if @jumping
+      @jumping = true
+      self.velocity_y = -10
+      @image = @jump
+    end
+  end
+
+  def clone
+    if @active
+      new = Player.create({:x => @x, :y => @y})
+      new.active = false
+    end
   end
 
   def move(x,y)
