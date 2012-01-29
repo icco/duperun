@@ -3,13 +3,19 @@
 class Player
   attr_reader :x, :y
 
+  def inspect
+    return "#<Player @y=#{@y}, @x=#{@x}, @vel_y=#{@vel_x}, @vel_x=#{@vel_x}>"
+  end
+
   def initialize(window, x, y)
     @x = @y = 0.0
     @vel_x = @vel_y = 1.0
     @x, @y = x, y
     @map = window.map
 
-    @standing, @walk1, @walk2, @jump = *Gosu::Image.load_tiles(window, "media/player2.png", 50, 76, false)
+    @height = @width = 50
+
+    @standing, @walk1, @walk2, @jump = *Gosu::Image.load_tiles(window, "media/player2.png", @width, @height, false)
 
     @angle = 0.0
   end
@@ -26,11 +32,12 @@ class Player
     @vel_y += Gosu::offset_y(@angle+90, 0.5)
   end
 
-  # TODO: Figure out how to deal with jumping.
   def jump
-    DupeRun.log "Jump!"
     if @map.solid?(@x, @y + 1) then
       @vel_y = -20
+      DupeRun.log "Jump!"
+    else
+      DupeRun.log "Can't Jump."
     end
   end
 
@@ -46,11 +53,7 @@ class Player
 
     @vel_y += 1 # GRAVITY!
 
-    if @vel_x > 0 then
-      @x += @vel_x if self.fit? 5, 0
-    elsif @vel_x < 0 then
-      @x += @vel_x if self.fit? -5, 0
-    end
+    @x += @vel_x if self.fit? @vel_x, 0
 
     @vel_x *= 0.95
     @vel_y *= 0.95
@@ -64,7 +67,7 @@ class Player
   end
 
   def draw
-    @cur_image.draw_rot(@x, @y, 1, @angle)
+    @cur_image.draw_rot(@x, @y, 1, @angle, ZOrder::Player)
   end
 
   def fit? offs_x, offs_y
