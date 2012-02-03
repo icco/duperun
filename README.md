@@ -1,6 +1,8 @@
 # Global Game Jam 2012
 
-Or how Nat decided to make his own game like a newb.
+Or how Nat decided to make his own game like a newb. He was unable to finish, but it met most of the basic functionality listed below.
+
+![screenshot](http://f.cl.ly/items/2302080k1F1P3b3A1Y0J/Screen%20Shot%202012-01-29%20at%203.19.26%20PM.png)
 
 ## Design / Idea
 
